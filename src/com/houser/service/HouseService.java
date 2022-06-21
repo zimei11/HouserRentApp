@@ -65,4 +65,19 @@ public class HouseService
         }
     }
 
+    /**
+     * 查找房屋
+     */
+    public House findHouse(int hid)
+    {
+        if(hid>0&&hid<=getSize())
+        {
+            return houses[hid-1];
+        }
+        else {
+            System.out.println("没有这间房屋信息");
+            return null;
+        }
+    }
+
 }
