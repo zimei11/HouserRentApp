@@ -37,7 +37,8 @@ public class HouseView
                     System.out.println("查找");
                     break;
                 case '3':
-                    System.out.println("删除");
+                    //System.out.println("删除");
+                    deleteHouse();
                     break;
                 case '4':
                     System.out.println("修改");
@@ -47,8 +48,8 @@ public class HouseView
                     listHouses();
                     break;
                 case '6':
-                    System.out.println("退出");
-                    loop=false;
+                    //System.out.println("退出");
+                    exit();
                     break;
             }
         }while(loop);
@@ -92,6 +93,53 @@ public class HouseView
         }
         else {
             System.out.println("==============房屋新增失败==============");
+        }
+    }
+
+    /**
+     * 删除房屋界面
+     */
+    public void deleteHouse()
+    {
+        System.out.println("==============删除房屋==============");
+        System.out.print("请输入待删除的房屋编号（-1退出）：");
+        int choose=Utility.readInt();
+
+        if(choose==-1)
+        {
+            System.out.println("==============放弃删除房屋信息==============");
+        }
+        else if(choose>0&&choose<= houseService.getSize())
+        {
+            System.out.println("确认是否删除，请小心选择");
+            System.out.print("请输入你的选择(Y/N)：");
+            char ifDelete = Utility.readConfirmSelection();
+            if(ifDelete=='Y')
+            {
+                boolean temp = houseService.deleteHouse(choose);
+                if (temp)
+                {
+                    System.out.println("==============删除完成==============");
+                } else
+                {
+                    System.out.println("==============删除失败==============");
+                }
+            }
+            else {
+                System.out.println("==============放弃删除=============");
+            }
+        }
+    }
+
+    /**
+     * 退出确认
+     */
+    public void exit()
+    {
+        char c=Utility.readConfirmSelection();
+        if(c=='Y')
+        {
+            loop=false;
         }
     }
 }

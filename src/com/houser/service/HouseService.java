@@ -43,4 +43,26 @@ public class HouseService
         }
     }
 
+    /**
+     * 删除房子
+     */
+    public boolean deleteHouse(int choose)
+    {
+        if(getSize()>0)
+        {
+            for (int i = choose - 1; i < getSize()-1; i++)
+            {
+                houses[i] = houses[i + 1];
+                houses[i].setId(houses[i].getId()-1);//房子删除，编号前移
+            }
+            houses[getSize()-1]=null;
+            setSize(getSize() - 1);
+            return true;
+        }
+        else {
+            System.out.println("系统已经没有任何房子信息");
+            return false;
+        }
+    }
+
 }
