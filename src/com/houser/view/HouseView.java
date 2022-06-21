@@ -1,5 +1,7 @@
 package com.houser.view;
 
+import com.houser.domain.House;
+import com.houser.service.HouseService;
 import com.houser.utils.Utility;
 
 /**
@@ -11,6 +13,8 @@ public class HouseView
 {
     private boolean loop=true;
     private char key=' ';
+    //系统最多5套房子信息
+    private HouseService houseService = new HouseService(5);
     public void mainMenu()
     {
         do{
@@ -26,7 +30,8 @@ public class HouseView
             switch(key)
             {
                 case '1':
-                    System.out.println("新增");
+                    //System.out.println("新增");
+                    addHouse();
                     break;
                 case '2':
                     System.out.println("查找");
@@ -38,7 +43,8 @@ public class HouseView
                     System.out.println("修改");
                     break;
                 case '5':
-                    System.out.println("房屋列表");
+                    //System.out.println("房屋列表");
+                    listHouses();
                     break;
                 case '6':
                     System.out.println("退出");
@@ -46,5 +52,46 @@ public class HouseView
                     break;
             }
         }while(loop);
+    }
+
+    /**
+     * 房屋信息界面
+     */
+    public void listHouses()
+    {
+        System.out.println("==============房屋列表==============");
+        System.out.println("编号\t\t房主\t\t电话\t\t地址\t\t月租\t\t状态（未出租/已出租）");
+        House[] house=houseService.list();
+        for (int i = 0; i < houseService.getSize(); i++)
+        {
+            System.out.println(house[i]);
+        }
+        System.out.println("==============房屋列表展示完毕==============");
+    }
+
+    /**
+     * 房屋新增界面
+     */
+    public void addHouse()
+    {
+        System.out.println("==============房屋新增界面==============");
+        System.out.print("房屋拥有者姓名：");
+        String name=Utility.readString(10);
+        System.out.print("房屋拥有者电话：");
+        String phone=Utility.readString(13);
+        System.out.print("房屋地址：");
+        String address=Utility.readString(50);
+        System.out.print("房屋月租：");
+        double rent=Utility.readInt();
+        System.out.print("房屋状态：");
+        String state=Utility.readString(6,"未出租");
+        House newHouse=new House(0,name,phone,address,rent,state);
+        if(houseService.addHouse(newHouse))
+        {
+            System.out.println("==============房屋新增成功==============");
+        }
+        else {
+            System.out.println("==============房屋新增失败==============");
+        }
     }
 }

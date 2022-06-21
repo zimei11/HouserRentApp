@@ -23,9 +23,9 @@ public class House
     public String toString()
     {
         return  id +
-                "\t" + name  +
+                "\t\t" + name  +
                 "\t" + phone  +
-                "\t" + address  +
+                "\t\t" + address  +
                 "\t" + monthly_rent +
                 "\t" + state ;
     }
