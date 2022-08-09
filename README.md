@@ -11,8 +11,8 @@
 
 ## 架构
 
-![image-20220620220528099](http://img.zimei.xyz/202206202205352.png)
+![image-20220620220528099](http://img.zimei.fun/202206202205352.png)
 
 ## 运行效果
 
-![image-20220620220623266](http://img.zimei.xyz/202206202206431.png)
+![image-20220620220623266](http://img.zimei.fun/202206202206431.png)
